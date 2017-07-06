@@ -27,7 +27,7 @@ func main() {
 
 	input := createGraphFromFile(file)
 	heapMap := initializeWeights(1, len(input))
-	A := djistra(input, heapMap)
+	A := dijkstra(input, heapMap)
 
 	qs := []int{7, 37, 59, 82, 99, 115, 133, 165, 188, 197}
 	for _, element := range qs {
@@ -71,7 +71,7 @@ func initializeWeights(sourceVertex int, n int) map[int]int {
 	return m
 }
 
-func djistra(input map[int][]Node, heapMap map[int]int) map[int]int {
+func dijkstra(input map[int][]Node, heapMap map[int]int) map[int]int {
 
 	A := make(map[int]int)
 	// main while loop
