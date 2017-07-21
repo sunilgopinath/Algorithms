@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-// DifferenceSorter sorts planets by axis.
+// DifferenceSorter sorts jobs by weight - length
 type DifferenceSorter []Job
 
 func (d DifferenceSorter) Len() int      { return len(d) }
@@ -21,7 +21,7 @@ func (d DifferenceSorter) Less(i, j int) bool {
 	return d[i].Difference > d[j].Difference
 }
 
-// RatioSorter sorts planets by axis.
+// RatioSorter sorts jobs by weight / length
 type RatioSorter []Job
 
 func (r RatioSorter) Len() int      { return len(r) }
@@ -78,7 +78,6 @@ func main() {
 	for _, j := range jobs {
 		rc = rc + j.Length
 		rsum = rsum + j.Weight*rc
-		// fmt.Println(j.Weight, j.Difference)
 	}
 	fmt.Println(rsum)
 }
