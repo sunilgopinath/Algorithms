@@ -24,12 +24,9 @@ public class Huffman {
         while(heap.size() > 1) {
             Node left = heap.poll();
             Node right = heap.poll();
-//            System.out.println(left);
-
             Node n = new Node("$", left.frequency + right.frequency, left, right);
             heap.offer(n);
         }
-//        System.out.println(heap.peek().left);
         System.out.println(getMinTreeLength(heap.peek()));
         System.out.println(getMaxTreeLength(heap.peek()));
     }
