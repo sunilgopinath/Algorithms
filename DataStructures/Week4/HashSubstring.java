@@ -71,7 +71,7 @@ public class HashSubstring {
 
     // this is where we calculate the rolling hash in constant time
     private static long[] precomputeHashes(String ti, int p) {
-  		int t = ti.length();
+      int t = ti.length();
 
   		// H <- array of length |T| - |P| + 1
   		long[] H = new long[t-p+1];
@@ -82,18 +82,19 @@ public class HashSubstring {
   		// H[|T|-|P|] <- PolyHash(S, p, x)
   		H[t-p] = polyHash(s);
 
-  		long y = 1;
+      long y = 1;
 
-  		for (int i = 1; i <= p; i++) {
-  			y = (y * x) % prime;
-  		}
+      for (int i = 1; i <= p; i++) {
+      	y = (y * x) % prime;
+      }
 
-  		for (int i = t- p - 1; i >=0; i--) {
-  			long preHash = x * H[i + 1] + ti.charAt(i) - y * ti.charAt(i + p);
+      for (int i = t- p - 1; i >=0; i--) {
+        long preHash = x * H[i + 1] + ti.charAt(i) - y * ti.charAt(i + p);
+
         // we don't want negative mods
         preHash = ((preHash % prime) + prime);
-  			H[i] = preHash % prime;
-  		}
+        H[i] = preHash % prime;
+      }
 
   		return H;
 
