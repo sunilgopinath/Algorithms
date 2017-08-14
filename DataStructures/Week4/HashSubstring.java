@@ -72,15 +72,13 @@ public class HashSubstring {
     // this is where we calculate the rolling hash in constant time
     private static long[] precomputeHashes(String ti, int p) {
       int t = ti.length();
+      // H <- array of length |T| - |P| + 1
+      long[] H = new long[t-p+1];
+      // S <- T[|T|-|P|..|T|-1]
+      String s = ti.substring(t - p);
 
-  		// H <- array of length |T| - |P| + 1
-  		long[] H = new long[t-p+1];
-
-  		// S <- T[|T|-|P|..|T|-1]
-  		String s = ti.substring(t - p);
-
-  		// H[|T|-|P|] <- PolyHash(S, p, x)
-  		H[t-p] = polyHash(s);
+      // H[|T|-|P|] <- PolyHash(S, p, x)
+      H[t-p] = polyHash(s);
 
       long y = 1;
 
@@ -96,9 +94,8 @@ public class HashSubstring {
         H[i] = preHash % prime;
       }
 
-  		return H;
-
-  	}
+      return H;
+    }
 
     static class Data {
         String pattern;
