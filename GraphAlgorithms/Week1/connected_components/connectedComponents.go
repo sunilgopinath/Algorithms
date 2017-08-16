@@ -47,8 +47,9 @@ func getGraph() map[int][]int {
 	for i := 0; i < v; i++ {
 		g[i] = []int{}
 	}
+	edges := e
 	// read in input and load into graph
-	for i := 0; i < e; i++ {
+	for i := 0; i < edges; i++ {
 		fmt.Scan(&v)
 		fmt.Scan(&e)
 		g[v-1] = append(g[v-1], e-1)
